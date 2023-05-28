@@ -1,0 +1,89 @@
+import React, { useState } from "react";
+import "./admin.css";
+
+const Admin = () => {
+  const [questions, setQuestions] = useState([]);
+  const [editingQuestionId, setEditingQuestionId] = useState(null);
+
+
+  const handleQuestionAddition = (e) => {
+    e.preventDefault();
+    const questionInput = e.target.elements.question;
+    const optionsInput = e.target.elements.options;
+    const answerInput = e.target.elements.answer;
+    const imageInput = e.target.elements.image;
+
+    const newQuestion = {
+      id: questions.length + 1,
+      question: questionInput.value,
+      options: optionsInput.value.split(","),
+      answer: parseInt(answerInput.value),
+      image: imageInput.files[0] || null, // Get the uploaded image file or set it to null if no image is selected
+    };
+
+    setQuestions([...questions, newQuestion]);
+
+    // Clear the form fields after adding the question
+    questionInput.value = "";
+    optionsInput.value = "";
+    answerInput.value = "";
+    imageInput.value = "";
+  };
+
+  
+   
+    const handleQuestionEdit = (questionId, updatedQuestion) => {
+      setQuestions((prevQuestions) => {
+        const updatedQuestions = prevQuestions.map((question) => {
+          if (question.id === questionId) {
+            return { ...question, ...updatedQuestion };
+          }
+          return question;
+        });
+        return updatedQuestions;
+      });
+      setEditingQuestionId(null);
+
+    };
+    
+  const handleQuestionDelete = (questionId) => {
+    setQuestions((prevQuestions) => {
+      const updatedQuestions = prevQuestions.filter((question) => question.id !== questionId);
+      return updatedQuestions;
+    });
+    };
+
+  return (
+    <div>
+      <div className="Admin-dashboard">
+        <div className="add-questions">
+          <form onSubmit={handleQuestionAddition}>
+            <input type="text" name="question" placeholder="Question" required />
+            <input type="text" name="options" placeholder="Options (comma-separated)" required />
+            <input type="number" name="answer" placeholder="Answer (option index)" required />
+            <input type="file" name="image" accept="image/*" />
+            <button type="submit">Add Question</button>
+          </form>
+        </div>
+        <div className="questions-list">
+          <h2>Questions</h2>
+          {questions.map((question) => (
+            <div key={question.id}>
+              <p>{question.question}</p>
+              <p>Options: {question.options.join(", ")}</p>
+              <p>Answer: {question.answer}</p>
+              {question.image && (
+                <img src={URL.createObjectURL(question.image)} alt="Question" />
+              )}
+              
+              <button onClick={() => setEditingQuestionId(question.id)}>Edit</button>
+              <button onClick={() => handleQuestionDelete(question.id)}>Delete</button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Admin;

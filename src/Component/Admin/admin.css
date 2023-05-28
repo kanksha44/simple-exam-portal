@@ -1,0 +1,14 @@
+* {
+  color: black;
+}
+.Admin-dashboard {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+img {
+  width: 200px; /* Set the desired width */
+  height: auto; /* Adjust the height accordingly to maintain aspect ratio */
+  /* Add other styling properties as needed */
+}

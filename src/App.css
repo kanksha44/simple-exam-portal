@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+  /* background-color: darksalmon; */
+  background: linear-gradient(90.04deg, #920292 0.03%, #f4acb8 99.96%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

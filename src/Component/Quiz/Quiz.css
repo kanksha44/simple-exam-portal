@@ -1,0 +1,74 @@
+* {
+  color: #fff;
+  font-weight: 300px;
+}
+input {
+  align-items: start;
+}
+.quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.container h1 {
+  text-align: center;
+}
+
+.option-container {
+  margin-bottom: 10px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 250px;
+}
+
+input[type="radio"]:checked + label {
+  background-color: #e0e0e0;
+}
+
+.next-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4287f5;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.next-btn:hover {
+  background-color: #3272c4;
+}
+
+.play-again-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #f54242;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.play-again-btn:hover {
+  background-color: #c43333;
+}
+
+.time-remaining {
+  text-align: center;
+  margin-top: 20px;
+}
